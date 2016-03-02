@@ -1,0 +1,77 @@
+<!doctype html>
+<html ng-app="myApp">
+	<head>
+		<title>Calculatieformulier voor transitievergoeding</title>
+		<link href="http://www.vanloon-advocaten.nl/css/template.css" rel="stylesheet" type="text/css" />
+		<style>
+			.frmSelect {
+				font-size: 12px; font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+				width: 90%; 
+				
+				background: #d9e48c; 
+				border: 0px; 
+				height: 30px; 
+				margin-top: 5px; 
+				margin-bottom: 10px;
+
+				max-width: 600px;
+				float: left;	
+				background-color: #EFEFEF;
+			    border-top: 1px solid #AAAAAA !important;
+			    overflow: auto;
+			    padding: 5px;
+
+				/* IPAD / IPHONE FIX */
+				border-radius: 0px;
+				-o-border-radius: 0px;
+				-ms-border-radius: 0px;
+				-moz-border-radius: 0px;
+				-webkit-border-radius: 0px;
+				-webkit-appearance: none;
+
+			}
+
+		</style>
+		<script language="javascript">
+			
+		</script>
+	</head>
+	<body>
+		<form name="CalcForm" ng-controller="ctrlCalcForm">
+			<div class="boxfield">
+				<div class="CenterDiv">
+					<div class="cont2">
+						<div id="ascontent_TextField01">
+							<h1 class="clear">Ontslagvergoeding uitrekenen</h1>
+							<p class="clear">Met onderstaande calculator kunt u uitrekenen wat de minimale vergoeding is voor ontslag.</p>
+							
+							<div id="nlsformmanager_1426" class=" clear" title="nlsContactformulier">
+								<div>
+									<!--<p class='frmLabel'>Medewerker naam:</p><p class='frmControl'><input class='frmText' ng-model='Name' type='text' /></p><div class='clr'></div>-->
+									<p class='frmLabel'>Geboorte datum (dd-mm-jjjj):</p><p class='frmControl'><input name='BirthDate' class='frmText' ng-model='BirthDate' type='text' onFocus="if(this.value=='dd-mm-jjjj') this.value='';" onKeyPress="return DateOnKeyPress(event, this);" /></p><div class='clr'></div>
+									<p class='frmLabel'>Aantal salarisbetalingen per jaar:</p><p class='frmControl'><input class='frmText' ng-model='PaymentsPerYear' type='text' onKeyPress="return NumberOnKeyPress(event, this);" /></p><div class='clr'></div>
+									<p class='frmLabel'>Brutosalaris per betaling:</p><p class='frmControl'><input class='frmText' ng-model='SalaryPerPayment' type='text' onKeyPress="return CurrencyOnKeyPress(event, this);" /></p><div class='clr'></div>
+									<p class='frmLabel'>Vakantietoeslag (percentage):</p><p class='frmControl'><input class='frmText' ng-model='HolidayPerc' type='text' onKeyPress="return NumberOnKeyPress(event, this);" /></p><div class='clr'></div>
+									<p class='frmLabel'>Beloning voor een vaste 13e maand:</p><p class='frmControl'><input class='frmText' ng-model='Fixed13thMonth' type='text' onKeyPress="return CurrencyOnKeyPress(event, this);" /></p><div class='clr'></div>
+									<p class='frmLabel'>Beloning voor vast structureel overwerk (per salarisbetaling):</p><p class='frmControl'><input class='frmText' ng-model='FixedOvertime' type='text' onKeyPress="return CurrencyOnKeyPress(event, this);" /></p><div class='clr'></div>
+									<p class='frmLabel'>Vaste ploegentoeslag (per salarisbetaling):</p><p class='frmControl'><input class='frmText' ng-model='FixedShift' type='text' onKeyPress="return CurrencyOnKeyPress(event, this);" /></p><div class='clr'></div>
+									<p class='frmLabel'>Extra/bonus (per jaar):</p><p class='frmControl'><input class='frmText' ng-model='ExtraBonus' type='text' onKeyPress="return CurrencyOnKeyPress(event, this);" /></p><div class='clr'></div>
+									<p class='frmLabel'>Datum in dienst (dd-mm-jjjj):</p><p class='frmControl'><input class='frmText' name='DateIn' ng-model='DateIn' type='text' onFocus="if(this.value=='dd-mm-jjjj') this.value='';" onKeyPress="return DateOnKeyPress(event, this);"/></p><div class='clr'></div>
+									<p class='frmLabel'>Datum uit dienst (dd-mm-jjjj):</p><p class='frmControl'><input class='frmText' name='DateOut' ng-model='DateOut' type='text' onFocus="if(this.value=='dd-mm-jjjj') this.value='';" onKeyPress="return DateOnKeyPress(event, this);"/></p><div class='clr'></div>
+									<p class='frmLabel'>Werkgever heeft meer dan 25 medewerkers:</p>
+									<p class='frmControl'><select class="frmSelect" ng-model="MoreThan25" ng-options="optBool.name for optBool in BooleanOptions"></select></p><div class='clr'></div>
+									<div class='frmLabel' ng-show="NeedToCalculate"><p class="clear">&nbsp;</p></div>
+									<div class='frmLabel' ng-show="!NeedToCalculate"><p class="clear">De berekende ontslagvergoeding op basis van de door u opgegeven gegevens is &euro;{{ CalculatedFeeFormatted }}. Op basis van de kantonrechtersformule (factor 1.0) zou dit {{ CalculatedKantonFeeFormatted }} geweest zijn.</p></div>
+									<div class='frmLabel' ng-show="NeedToCalculate"><input class='frmsubmit' type="button" value='Reken uit' ng-click='doCalc()' /> </div>
+									<div class='frmLabel' ng-show="!NeedToCalculate"><input class='frmsubmit' type="button" value='Opnieuw uitrekenen' ng-click='doCalc();' /> </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+		<script src="http://code.angularjs.org/1.2.9/angular.min.js"></script>
+		<script src="js/calc.js"></script>
+	</body>
+</html>
