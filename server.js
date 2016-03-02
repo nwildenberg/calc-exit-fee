@@ -5,6 +5,7 @@ var fs          = require('fs');
 var bodyParser  = require('body-parser');
 var calcExitFee = require('./node_modules/calc_exitfee.js');
 
+
 function date2yearfirst(s)
 {
     while( s.length < 8)
